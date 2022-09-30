@@ -11,8 +11,18 @@ import ListAltIcon from '@material-ui/icons/ListAlt'
 import PermIdentityIcon from '@material-ui/icons/PermIdentity'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import { Button } from '@material-ui/core'
+import AuthService from '../services/AuthService'
+import { useNavigate } from 'react-router-dom'
 
-function Sidebar() {
+const Sidebar= () => {
+   const userId = sessionStorage.getItem("userId");
+   const navigate = useNavigate();
+   const handleLogout = e => {
+      e.preventDefault();
+      AuthService.logout();
+      navigate("/home");
+      window.location.reload();
+  }
     return (
         <div className = "sidebar">
            <TwitterIcon
@@ -51,7 +61,8 @@ function Sidebar() {
               Icon = {MoreHorizIcon}
               text = "More"  
            />
-           <Button variant = "outlined" className = "sidebar__tweet">Tweet</Button>
+           <Button variant = "outlined" className = "sidebar__tweet">{userId}</Button>
+           <Button onClick={handleLogout} variant = "outlined" className = "sidebar__tweet">logout</Button>
         </div>
     )
 }
