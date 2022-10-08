@@ -2,7 +2,7 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import AuthService from "./AuthService";
 
-const API_URL = "http://localhost:8080/api/v1.0/tweets/";
+const API_URL = "https://tweet-backend.azurewebsites.net/api/v1.0/tweets/";
 const userId = sessionStorage.getItem("userId");
 const user = JSON.parse(sessionStorage.getItem("user"));
 
